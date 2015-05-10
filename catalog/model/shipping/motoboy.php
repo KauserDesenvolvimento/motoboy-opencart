@@ -43,7 +43,11 @@ class ModelShippingmotoboy extends Model
             }
         }
 
-        if ($dist > $this->config->get('motoboy_max')) {
+        if (isset($dist)) {
+            if ($dist > $this->config->get('motoboy_max')) {
+                $status = false;
+            }
+        } else {
             $status = false;
         }
 
@@ -58,7 +62,7 @@ class ModelShippingmotoboy extends Model
 
             $quote_data['motoboy'] = array(
                 'code'         => 'motoboy.motoboy',
-                'title'        => $this->language->get('text_description'),
+                'title'        => $this->language->get('text_description') . '<br><small>Distancia estimada: ' . $dist . 'km</small>',
                 'cost'         => $cost,
                 'tax_class_id' => 0,
                 'text'         => $this->currency->format($cost),
