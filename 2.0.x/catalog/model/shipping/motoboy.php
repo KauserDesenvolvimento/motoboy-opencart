@@ -65,7 +65,7 @@ class ModelShippingmotoboy extends Model
                 'title'        => $this->language->get('text_description') . '<br><small>Distancia estimada: ' . $dist . 'km</small>',
                 'cost'         => $cost,
                 'tax_class_id' => 0,
-                'text'         => $this->currency->format($cost),
+                'text'         => $this->currency->format($cost, $this->session->data['currency']),
             );
 
             $method_data = array(
